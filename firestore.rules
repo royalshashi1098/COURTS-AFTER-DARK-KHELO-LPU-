@@ -1,0 +1,66 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Campus Sports Facilities
+    match /facilities/{facilityId} {
+      allow read: if true;
+      allow create, update: if isValidId(facilityId);
+      allow delete: if false;
+    }
+
+    // Bookings & Slot Reservations
+    match /bookings/{bookingId} {
+      allow read: if true;
+      allow create: if isValidId(bookingId)
+        && request.resource.data.keys().hasAll(['id', 'facilityId', 'date', 'slotTime', 'studentName', 'studentRegNo', 'status'])
+        && request.resource.data.studentName is string
+        && request.resource.data.studentRegNo is string;
+      allow update: if isValidId(bookingId);
+      allow delete: if isValidId(bookingId);
+    }
+
+    // Community Players
+    match /players/{playerId} {
+      allow read: if true;
+      allow create: if isValidId(playerId)
+        && request.resource.data.keys().hasAll(['id', 'name', 'school', 'sport', 'skillLevel'])
+        && request.resource.data.name is string;
+      allow update: if isValidId(playerId);
+      allow delete: if isValidId(playerId);
+    }
+
+    // Student Sports Teams
+    match /teams/{teamId} {
+      allow read: if true;
+      allow create: if isValidId(teamId)
+        && request.resource.data.keys().hasAll(['id', 'name', 'sport', 'captainName', 'captainRegNo'])
+        && request.resource.data.name is string;
+      allow update: if isValidId(teamId);
+      allow delete: if isValidId(teamId);
+    }
+
+    // Campus Tournaments
+    match /tournaments/{tournamentId} {
+      allow read: if true;
+      allow create, update: if isValidId(tournamentId);
+      allow delete: if false;
+    }
+
+    // In-App Notifications
+    match /notifications/{notificationId} {
+      allow read: if true;
+      allow create, update: if isValidId(notificationId);
+      allow delete: if isValidId(notificationId);
+    }
+  }
+}

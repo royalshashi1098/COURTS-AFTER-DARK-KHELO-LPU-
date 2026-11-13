@@ -1,0 +1,155 @@
+{
+  "entities": {
+    "Facility": {
+      "title": "Facility",
+      "description": "Sports ground, court, or athletics facility on campus",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "sport": { "type": "string" },
+        "facilityType": { "type": "string" },
+        "classification": { "type": "string", "enum": ["Indoor", "Outdoor"] },
+        "publishedQuantity": { "type": "string" },
+        "courtCount": { "type": "number" },
+        "description": { "type": "string" },
+        "equipmentInfo": { "type": "string" },
+        "exactLocation": { "type": "string" },
+        "campusBlock": { "type": "string" },
+        "hasVerifiedCoordinates": { "type": "boolean" },
+        "mapLink": { "type": "string" },
+        "openingHours": { "type": "string" },
+        "fees": { "type": "string" },
+        "accessStatus": { "type": "string" },
+        "availabilityStatus": { "type": "string" },
+        "lastVerificationDate": { "type": "string" },
+        "officialSource": { "type": "string" },
+        "isVerified": { "type": "boolean" },
+        "image": { "type": "string" },
+        "suitableForGroup": { "type": "string" }
+      },
+      "required": ["id", "name", "sport", "facilityType", "classification", "exactLocation"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Student court or slot reservation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "facilityId": { "type": "string" },
+        "facilityName": { "type": "string" },
+        "sport": { "type": "string" },
+        "courtNumber": { "type": "number" },
+        "date": { "type": "string" },
+        "slotTime": { "type": "string" },
+        "studentName": { "type": "string" },
+        "studentRegNo": { "type": "string" },
+        "schoolDepartment": { "type": "string" },
+        "contactEmail": { "type": "string" },
+        "phoneNumber": { "type": "string" },
+        "equipmentRentalRequested": { "type": "boolean" },
+        "status": { "type": "string", "enum": ["Confirmed", "Cancelled", "Waitlisted"] },
+        "createdAt": { "type": "string" },
+        "isDemoNoticeAcknowledged": { "type": "boolean" }
+      },
+      "required": ["id", "facilityId", "facilityName", "sport", "date", "slotTime", "studentName", "studentRegNo", "phoneNumber", "status"]
+    },
+    "PlayerProfile": {
+      "title": "PlayerProfile",
+      "description": "Community player looking for match partner or pickup squad",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "regNoMasked": { "type": "string" },
+        "school": { "type": "string" },
+        "sport": { "type": "string" },
+        "skillLevel": { "type": "string" },
+        "preferredTime": { "type": "string" },
+        "groupSizePreferred": { "type": "string" },
+        "bio": { "type": "string" },
+        "lookingFor": { "type": "string" },
+        "hostelResidence": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "school", "sport", "skillLevel"]
+    },
+    "SportsTeam": {
+      "title": "SportsTeam",
+      "description": "Student recreational or tournament sports squad",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "sport": { "type": "string" },
+        "captainName": { "type": "string" },
+        "captainRegNo": { "type": "string" },
+        "captainPhone": { "type": "string" },
+        "school": { "type": "string" },
+        "lookingForMembers": { "type": "boolean" },
+        "openRoles": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "sport", "captainName", "captainRegNo", "captainPhone"]
+    },
+    "Tournament": {
+      "title": "Tournament",
+      "description": "Campus sports championship or intramural tournament",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "sport": { "type": "string" },
+        "category": { "type": "string" },
+        "venue": { "type": "string" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "registrationDeadline": { "type": "string" },
+        "status": { "type": "string" },
+        "currentRound": { "type": "string" }
+      },
+      "required": ["id", "title", "sport", "category", "venue", "status"]
+    },
+    "PushNotification": {
+      "title": "PushNotification",
+      "description": "System or user alert notification",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "body": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "type": { "type": "string" },
+        "read": { "type": "boolean" },
+        "link": { "type": "string" }
+      },
+      "required": ["id", "title", "body", "type", "read"]
+    }
+  },
+  "firestore": {
+    "/facilities/{facilityId}": {
+      "schema": "Facility",
+      "description": "LPU campus grounds, indoor arenas, and sports facilities"
+    },
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Student slot reservations and court bookings"
+    },
+    "/players/{playerId}": {
+      "schema": "PlayerProfile",
+      "description": "Community player wanted listings and matchmaking"
+    },
+    "/teams/{teamId}": {
+      "schema": "SportsTeam",
+      "description": "Student sports teams and squad rosters"
+    },
+    "/tournaments/{tournamentId}": {
+      "schema": "Tournament",
+      "description": "Campus championship tournaments and match brackets"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "PushNotification",
+      "description": "In-app and simulated push alerts for bookings and match fixtures"
+    }
+  }
+}

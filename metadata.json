@@ -1,0 +1,8 @@
+{
+  "name": "Remix KHELO LPU",
+  "description": "Comprehensive sports discovery, facility booking, team creation, and tournament platform for Lovely Professional University students.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#080E1E" />
+      <stop offset="50%" stop-color="#0F1F3D" />
+      <stop offset="100%" stop-color="#050A14" />
+    </linearGradient>
+    <linearGradient id="limeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E2FF4A" />
+      <stop offset="50%" stop-color="#CCFF00" />
+      <stop offset="100%" stop-color="#10B981" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Base Background -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)" />
+  
+  <!-- Subtle Stadium Arena Rings -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="2" />
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="2" stroke-dasharray="10 8" />
+  <circle cx="256" cy="256" r="110" fill="none" stroke="#CCFF00" stroke-opacity="0.12" stroke-width="1.5" />
+
+  <!-- Dynamic Athletic Lightning & K Logo Accent -->
+  <path d="M150 120 L210 120 L210 392 L150 392 Z" fill="url(#limeGrad)" rx="8" filter="url(#glow)"/>
+  
+  <!-- K Diagonal Arms with Athletic Chevron Flare -->
+  <path d="M210 256 L330 130 C340 120 358 120 368 132 C378 144 376 162 364 174 L276 266 L380 370 C392 382 390 400 376 410 C364 420 346 418 336 406 L210 280 Z" fill="#FFFFFF" />
+  
+  <!-- Dynamic Sprinting Flame / Speed Arc -->
+  <path d="M290 220 Q 340 190 380 230 Q 340 250 290 220 Z" fill="url(#limeGrad)" />
+  
+  <!-- LPU Brand Subtext Accent -->
+  <rect x="180" y="420" width="152" height="28" rx="14" fill="#CCFF00" />
+  <text x="256" y="439" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="14" fill="#080E1E" text-anchor="middle" letter-spacing="3">KHELO LPU</text>
+</svg>
